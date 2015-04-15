@@ -1,0 +1,103 @@
+package com.sunera.smartest.selenium;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+public class SeleniumUtilFramework 
+{
+	 public static String getDateTimeFormat(String data) throws Exception 
+	 	{
+			Calendar cal = Calendar.getInstance();
+			int month = cal.get(Calendar.MONTH);
+			int year = cal.get(Calendar.YEAR);
+			int day = cal.get(Calendar.DATE);
+			int day_of_month = cal.get(Calendar.DAY_OF_MONTH);
+			int hour =cal.get(Calendar.HOUR_OF_DAY);
+			int minute =cal.get(Calendar.MINUTE);
+			int second =cal.get(Calendar.SECOND);
+			cal.set(year,month,day);
+			Date d=new Date(cal.getTimeInMillis());
+			String month_name=new SimpleDateFormat("MMM").format(d);
+			
+			String outputDateFormat = "";
+			
+			String format1 = "dd-mm-yyyy,0";
+			String format2 = "dd-mmm-yyyy,0";
+			String format3 = "dd-mmm-yyyy,2";
+			String format4 = "mm/dd/yyyy,0";
+					
+			if (data.equals("format1"))
+			{
+				outputDateFormat=day+ "-" + (month +1 ) + "-" + year;
+			}
+			if (data.equals("format2"))
+			{
+				outputDateFormat=day + "-" + month_name + "-" + year;
+			}
+			if (data.equals("format4"))
+			{
+				outputDateFormat=(month +1 ) + "/" + day + "/" + year;
+			}
+			cal.add(Calendar.DATE,2);
+			Date da=new Date(cal.getTimeInMillis());
+			String monthnm=new SimpleDateFormat("MMM").format(da);
+			
+			if (data.equals("format3"))
+			{
+			    outputDateFormat=cal.get(Calendar.DATE) + "-" + monthnm + "-" + cal.get(Calendar.YEAR);
+			    System.out.println("Date Format1: "+ day + "-" + (month +1 ) + "-" + year);
+		   	}
+			return outputDateFormat;
+		}
+
+	 public static String UniqueNumber(String data) 
+	 {
+			String uniquenumberFormat = "";
+			Date d = new Date();
+			System.out.println(" d---->" +d);
+			long timestamp = d.getTime();
+			String unique_num = new String();
+			uniquenumberFormat = Long.toString(timestamp, 0);
+			System.out.println(" unique_num---->" +uniquenumberFormat);
+			
+			if(data.equals("12digit"))
+			{
+			    uniquenumberFormat = uniquenumberFormat.substring(1);
+			     System.out.println(" unique_num---->" +uniquenumberFormat);
+			}
+			if(data.equals("8digit"))
+			{
+			    uniquenumberFormat = uniquenumberFormat.substring(5);
+			     System.out.println(" unique_num---->" +uniquenumberFormat);
+			}
+			if(data.equals("6digit"))
+			{
+			      uniquenumberFormat = uniquenumberFormat.substring(7);
+				  System.out.println(" unique_num---->" +uniquenumberFormat);
+			}
+			if(data.equals("5digit"))
+			{
+			      uniquenumberFormat = uniquenumberFormat.substring(8);
+				  System.out.println(" unique_num---->" +uniquenumberFormat);
+			}
+			if(data.equals("4digit"))
+			{
+			      uniquenumberFormat = uniquenumberFormat.substring(9);
+				  System.out.println(" unique_num---->" +uniquenumberFormat);
+			}
+			return uniquenumberFormat;
+		}	
+
+	 public static String generateUniqueData(String data)  
+	 {
+		    Calendar cal = Calendar.getInstance();
+			int minute =cal.get(Calendar.MINUTE);
+			int second =cal.get(Calendar.SECOND);
+			String outputData=data + "-"+ minute + second;
+		    System.out.println("uniquedata---->" + outputData); 
+		    return outputData; 
+	 } 
+}
+
+
